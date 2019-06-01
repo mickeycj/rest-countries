@@ -1,0 +1,36 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    compile commonLibs.kotlinStdLib
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath commonLibs.kotlinGradlePlugin
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+}
+dependencies {
+
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}

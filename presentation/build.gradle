@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName('ext')
+
+    sourceSets {
+        androidTest.java.srcDir(globalConfiguration['androidTestSrcDir'])
+        main.java.srcDir(globalConfiguration['mainSrcDir'])
+        test.java.srcDir(globalConfiguration['testSrcDir'])
+    }
+    compileSdkVersion globalConfiguration['androidCompileSdkVersion']
+    defaultConfig {
+        applicationId "com.mickeycj.restcountries"
+        minSdkVersion globalConfiguration['androidMinSdkVersion']
+        targetSdkVersion globalConfiguration['androidTargetSdkVersion']
+        versionCode globalConfiguration['androidVersionCode']
+        versionName globalConfiguration['androidVersionName']
+        testInstrumentationRunner globalConfiguration['testInstrumentationRunner']
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/*'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation commonLibs.kotlinStdLib
+    implementation project(':domain')
+    implementation project(':data')
+    implementation presentationLibs.supportLibrary
+    testImplementation presentationLibs.junit
+    androidTestImplementation presentationLibs.androidxCore
+    androidTestImplementation presentationLibs.androidxRunner
+}

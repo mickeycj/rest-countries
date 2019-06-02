@@ -3,6 +3,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     compile commonLibs.kotlinStdLib
+    implementation domainLibs.rxJava
 }
 
 buildscript {
@@ -20,7 +21,7 @@ repositories {
     jcenter()
 }
 dependencies {
-
+    implementation domainLibs.rxJava
 }
 
 compileKotlin {

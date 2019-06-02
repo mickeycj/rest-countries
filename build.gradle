@@ -9,8 +9,9 @@ buildscript {
                 kotlinGradlePlugin      :   ("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"),
                 kotlinStdLib            :   ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
         ]
+        rxJavaVersion = '2.2.9'
         domainLibs = [
-
+                rxJava                  : ("io.reactivex.rxjava2:rxjava:$rxJavaVersion")
         ]
         dataLibs = [
 

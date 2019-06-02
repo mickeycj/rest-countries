@@ -6,5 +6,5 @@ package com.mickeycj.domain.models
 data class Language(
     val name: String = "",
     val nativeName: String = "",
-    val iso639Code: String = ""
+    val code: String = ""
 )

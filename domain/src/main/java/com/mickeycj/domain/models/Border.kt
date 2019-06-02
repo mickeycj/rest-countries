@@ -6,5 +6,5 @@ package com.mickeycj.domain.models
 data class Border(
     val flagUrl: String = "",
     val name: String = "",
-    val iso3166Code: String = ""
+    val code: String = ""
 )

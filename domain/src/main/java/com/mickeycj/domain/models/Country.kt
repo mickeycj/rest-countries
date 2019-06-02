@@ -6,7 +6,7 @@ package com.mickeycj.domain.models
 data class Country(
     val flagUrl: String = "",
     val name: String = "",
-    val iso3166Code: String = "",
+    val code: String = "",
     val capital: String = "",
     val demonym: String = "",
     val languages: List<Language> = listOf(),

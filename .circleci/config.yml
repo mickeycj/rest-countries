@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/rest-countries-android
+    docker:
+      - image: circleci/android:api-28-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "presentation/build.gradle" }}
+      - run:
+          name: Download dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "presentation/build.gradle" }}
+      - run:
+          name: Run domain module unit tests
+          command: ./gradlew :domain:test
+      - store_artifacts:
+          path: domain/build/reports
+      - store_test_results:
+          path: domain/build/test-results
+      - run:
+          name: Run data module unit tests
+          command: ./gradlew :data:test
+      - store_artifacts:
+          path: data/build/reports
+      - store_test_results:
+          path: data/build/test-results
+      - run:
+          name: Run presentation module unit tests
+          command: ./gradlew :presentation:testDebugUnitTest
+      - store_artifacts:
+          path: presentation/build/reports
+      - store_test_results:
+          path: presentation/build/test-results
+      - run:
+          name: Run lint test
+          command: ./gradlew lint
+      - store_artifacts:
+          path: presentation/build/reports

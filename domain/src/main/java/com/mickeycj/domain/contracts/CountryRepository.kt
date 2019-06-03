@@ -1,4 +1,4 @@
-package com.mickeycj.domain.contracts.repository
+package com.mickeycj.domain.contracts
 
 import io.reactivex.Single
 

@@ -4,6 +4,10 @@ apply plugin: 'kotlin'
 dependencies {
     compile commonLibs.kotlinStdLib
     implementation domainLibs.rxJava
+    implementation domainLibs.spekJvm
+    implementation domainLibs.spekRunner
+    implementation domainLibs.assertJ
+    implementation domainLibs.mockK
 }
 
 buildscript {
@@ -22,6 +26,16 @@ repositories {
 }
 dependencies {
     implementation domainLibs.rxJava
+    implementation domainLibs.spekJvm
+    implementation domainLibs.spekRunner
+    implementation domainLibs.assertJ
+    implementation domainLibs.mockK
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'spek2'
+    }
 }
 
 compileKotlin {

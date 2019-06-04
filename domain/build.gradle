@@ -6,7 +6,6 @@ dependencies {
     implementation domainLibs.rxJava
     implementation domainLibs.spekJvm
     implementation domainLibs.spekRunner
-    implementation domainLibs.assertJ
     implementation domainLibs.mockK
 }
 
@@ -28,7 +27,6 @@ dependencies {
     implementation domainLibs.rxJava
     implementation domainLibs.spekJvm
     implementation domainLibs.spekRunner
-    implementation domainLibs.assertJ
     implementation domainLibs.mockK
 }
 

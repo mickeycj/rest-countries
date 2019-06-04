@@ -19,7 +19,6 @@ object GetCountriesUseCaseSpek : Spek({
     describe("Get Countries Use Case") {
 
         val countryRepository by memoized { mockk<CountryRepository>() }
-
         val getCountriesUseCase by memoized { GetCountriesUseCase(countryRepository) }
 
         context("When getting countries from the repository") {
@@ -29,7 +28,6 @@ object GetCountriesUseCaseSpek : Spek({
                 getCountriesUseCase.execute()
 
                 verify { countryRepository.getCountries() }
-
                 confirmVerified(countryRepository)
             }
         }

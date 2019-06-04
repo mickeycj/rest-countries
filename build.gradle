@@ -5,7 +5,6 @@ buildscript {
         rxJavaVersion = '2.2.9'
         supportLibraryVersion = '28.0.0'
         spekVersion = '2.0.5'
-        assertJVersion = '3.11.1'
         mockKVersion = '1.9'
         junitVersion = '4.12'
         androidxVersion = '1.0.0'
@@ -20,7 +19,6 @@ buildscript {
                 rxJava                  :   ("io.reactivex.rxjava2:rxjava:$rxJavaVersion"),
                 spekJvm                 :   ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion"),
                 spekRunner              :   ("org.spekframework.spek2:spek-runner-junit5:$spekVersion"),
-                assertJ                 :   ("org.assertj:assertj-core:$assertJVersion"),
                 mockK                   :   ("io.mockk:mockk:$mockKVersion")
         ]
         dataLibs = [

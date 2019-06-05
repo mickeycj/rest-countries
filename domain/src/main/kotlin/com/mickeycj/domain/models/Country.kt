@@ -12,7 +12,7 @@ data class Country(
     val demonym: String = "",
     val languages: List<Language> = listOf(),
     val currencies: List<Currency> = listOf(),
-    val borders: List<Border> = listOf(),
+    val borders: List<String> = listOf(),
     val region: String = "",
     val latitude: Float = 0.0f,
     val longitude: Float = 0.0f,

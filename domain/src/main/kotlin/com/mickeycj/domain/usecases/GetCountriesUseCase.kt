@@ -10,5 +10,5 @@ import com.mickeycj.domain.models.Country
  */
 class GetCountriesUseCase(private val countryRepository: CountryRepository) {
 
-    fun execute(): Single<List<Country>> = TODO()
+    fun execute(): Single<List<Country>> = countryRepository.getCountries()
 }

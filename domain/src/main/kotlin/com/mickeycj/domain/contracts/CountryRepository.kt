@@ -1,4 +1,4 @@
-package com.mickeycj.domain.contracts.repository
+package com.mickeycj.domain.contracts
 
 import io.reactivex.Single
 
@@ -10,8 +10,6 @@ import com.mickeycj.domain.models.Country
 interface CountryRepository {
 
     fun getCountries(): Single<List<Country>>
-
-    fun getCountriesByCode(codes: List<String>): Single<List<Country>>
 
     fun getCountry(code: String): Single<Country>
 }

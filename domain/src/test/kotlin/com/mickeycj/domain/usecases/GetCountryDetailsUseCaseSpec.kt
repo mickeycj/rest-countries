@@ -8,13 +8,13 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-import com.mickeycj.domain.Faker
+import com.mickeycj.domain.utils.Faker
 import com.mickeycj.domain.contracts.CountryRepository
 
 /**
  * Spek tests for getting country details from the repository.
  */
-object GetCountryDetailsUseCaseSpek : Spek({
+object GetCountryDetailsUseCaseSpec : Spek({
 
     describe("Get Country Details") {
 

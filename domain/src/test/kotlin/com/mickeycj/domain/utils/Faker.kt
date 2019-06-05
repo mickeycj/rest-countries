@@ -1,4 +1,4 @@
-package com.mickeycj.domain
+package com.mickeycj.domain.utils
 
 import io.reactivex.Single
 

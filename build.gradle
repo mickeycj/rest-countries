@@ -1,24 +1,29 @@
 buildscript {
     ext {
         gradleVersion = '3.4.1'
+        kotlinVersion = '1.3.31'
+        rxJavaVersion = '2.2.9'
+        supportLibraryVersion = '28.0.0'
+        spekVersion = '2.0.5'
+        mockKVersion = '1.9'
+        junitVersion = '4.12'
+        androidxVersion = '1.0.0'
         tools = [
                 gradle                  :   ("com.android.tools.build:gradle:$gradleVersion")
         ]
-        kotlinVersion = '1.3.31'
         commonLibs = [
                 kotlinGradlePlugin      :   ("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"),
                 kotlinStdLib            :   ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
         ]
-        rxJavaVersion = '2.2.9'
         domainLibs = [
-                rxJava                  : ("io.reactivex.rxjava2:rxjava:$rxJavaVersion")
+                rxJava                  :   ("io.reactivex.rxjava2:rxjava:$rxJavaVersion"),
+                spekJvm                 :   ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion"),
+                spekRunner              :   ("org.spekframework.spek2:spek-runner-junit5:$spekVersion"),
+                mockK                   :   ("io.mockk:mockk:$mockKVersion")
         ]
         dataLibs = [
 
         ]
-        supportLibraryVersion = '28.0.0'
-        junitVersion = '4.12'
-        androidxVersion = '1.0.0'
         presentationLibs = [
                 supportLibrary          :   ("com.android.support:appcompat-v7:$supportLibraryVersion"),
                 junit                   :   ("junit:junit:$junitVersion"),

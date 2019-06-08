@@ -3,6 +3,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     compile commonLibs.kotlinStdLib
+    compile project(":domain")
     implementation dataLibs.rxJava
     implementation dataLibs.retrofit
     implementation dataLibs.retrofitGsonConverter

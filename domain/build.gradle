@@ -15,7 +15,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath commonLibs.kotlinGradlePlugin
+        classpath tools.kotlinGradlePlugin
     }
 }
 
@@ -25,9 +25,9 @@ repositories {
 }
 dependencies {
     implementation domainLibs.rxJava
-    implementation domainLibs.spekJvm
-    implementation domainLibs.spekRunner
-    implementation domainLibs.mockK
+    testImplementation domainLibs.spekJvm
+    testImplementation domainLibs.mockK
+    testRuntimeOnly domainLibs.spekRunner
 }
 
 test {

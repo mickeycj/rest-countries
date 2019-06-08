@@ -1,10 +1,10 @@
-package com.mickeycj.domain.utils
+package com.mickeycj.domain
 
 import io.reactivex.Single
 
 import com.mickeycj.domain.models.Country
 
-object Faker {
+object FakeData {
 
     fun getCountries(): Single<List<Country>> = Single.just(listOf(Country(), Country(), Country()))
 

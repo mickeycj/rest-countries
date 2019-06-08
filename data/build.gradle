@@ -3,6 +3,14 @@ apply plugin: 'kotlin'
 
 dependencies {
     compile commonLibs.kotlinStdLib
+    implementation dataLibs.rxJava
+    implementation dataLibs.retrofit
+    implementation dataLibs.retrofitGsonConverter
+    implementation dataLibs.retrofitRxJavaAdapter
+    implementation dataLibs.spekJvm
+    implementation dataLibs.spekRunner
+    implementation dataLibs.assertJ
+    implementation dataLibs.mockK
 }
 
 buildscript {
@@ -11,7 +19,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath commonLibs.kotlinGradlePlugin
+        classpath tools.kotlinGradlePlugin
     }
 }
 
@@ -20,7 +28,20 @@ repositories {
     jcenter()
 }
 dependencies {
+    implementation dataLibs.rxJava
+    implementation dataLibs.retrofit
+    implementation dataLibs.retrofitGsonConverter
+    implementation dataLibs.retrofitRxJavaAdapter
+    testImplementation dataLibs.spekJvm
+    testImplementation dataLibs.assertJ
+    testImplementation dataLibs.mockK
+    testRuntimeOnly dataLibs.spekRunner
+}
 
+test {
+    useJUnitPlatform {
+        includeEngines dataLibs.engine
+    }
 }
 
 compileKotlin {

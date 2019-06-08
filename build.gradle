@@ -8,8 +8,8 @@ buildscript {
                 retrofit                :   '2.6.0',
                 supportLibrary          :   '28.0.0',
                 spek                    :   '2.0.5',
-                assertJ                 :   '3.11.1',
                 mockK                   :   '1.9',
+                assertJ                 :   '3.11.1',
                 junit                   :   '4.12',
                 androidx                :   '1.0.0'
         ]
@@ -34,8 +34,8 @@ buildscript {
                 retrofitRxJavaAdapter   :   ("com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"),
                 spekJvm                 :   ("org.spekframework.spek2:spek-dsl-jvm:$versions.spek"),
                 spekRunner              :   ("org.spekframework.spek2:spek-runner-junit5:$versions.spek"),
-                assertJ                 :   ("org.assertj:assertj-core:$versions.assertJ"),
                 mockK                   :   ("io.mockk:mockk:$versions.mockK"),
+                assertJ                 :   ("org.assertj:assertj-core:$versions.assertJ"),
                 engine                  :   'spek2'
         ]
         presentationLibs = [

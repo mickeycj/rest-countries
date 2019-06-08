@@ -10,8 +10,8 @@ dependencies {
     implementation dataLibs.retrofitRxJavaAdapter
     implementation dataLibs.spekJvm
     implementation dataLibs.spekRunner
-    implementation dataLibs.assertJ
     implementation dataLibs.mockK
+    implementation dataLibs.assertJ
 }
 
 buildscript {
@@ -34,8 +34,8 @@ dependencies {
     implementation dataLibs.retrofitGsonConverter
     implementation dataLibs.retrofitRxJavaAdapter
     testImplementation dataLibs.spekJvm
-    testImplementation dataLibs.assertJ
     testImplementation dataLibs.mockK
+    testImplementation dataLibs.assertJ
     testRuntimeOnly dataLibs.spekRunner
 }
 

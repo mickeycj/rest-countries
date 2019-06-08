@@ -2,6 +2,9 @@ package com.mickeycj.data.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Object for Language JSON data.
+ */
 class LanguageData(
     @SerializedName("iso639_1")
     val iso639_1: String,

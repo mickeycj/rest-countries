@@ -2,6 +2,9 @@ package com.mickeycj.data.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Object for Regional Bloc JSON data.
+ */
 class RegionalBlocData(
     @SerializedName("acronym")
     val acronym: String,

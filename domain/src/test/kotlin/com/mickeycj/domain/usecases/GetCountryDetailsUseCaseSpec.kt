@@ -8,7 +8,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-import com.mickeycj.domain.FakeData
+import com.mickeycj.domain.MockData
 import com.mickeycj.domain.contracts.CountryRepository
 
 /**
@@ -25,7 +25,7 @@ object GetCountryDetailsUseCaseSpec : Spek({
             it("It should return the specified country details") {
                 val code = "USA"
 
-                every { countryRepository.getCountry(code) } returns FakeData.getCountry()
+                every { countryRepository.getCountry(code) } returns MockData.countryDetails
 
                 getCountryDetailsUseCase.execute(code)
 

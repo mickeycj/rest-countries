@@ -3,9 +3,15 @@ package com.mickeycj.data
 import io.reactivex.Maybe
 import io.reactivex.Single
 
-import com.mickeycj.domain.models.*
+import com.mickeycj.domain.models.Country
+import com.mickeycj.domain.models.Currency
+import com.mickeycj.domain.models.Language
 
-import com.mickeycj.data.models.*
+import com.mickeycj.data.models.CountryData
+import com.mickeycj.data.models.CurrencyData
+import com.mickeycj.data.models.LanguageData
+import com.mickeycj.data.models.RegionalBlocData
+import com.mickeycj.data.models.TranslationsData
 
 /**
  * Object for providing mock data.
@@ -124,38 +130,14 @@ object MockData {
         48.0f
     )
 
-    val countryData: CountryData
-        get() {
-            return _countryData
-        }
-    val currencyData: CurrencyData
-        get() {
-            return _currencyData
-        }
-    val languageData: LanguageData
-        get() {
-            return _languageData
-        }
+    val countryData: CountryData get() = _countryData
+    val currencyData: CurrencyData get() = _currencyData
+    val languageData: LanguageData get() = _languageData
 
-    val country: Country
-        get() {
-            return _country
-        }
-    val currency: Currency
-        get() {
-            return _currency
-        }
-    val language: Language
-        get() {
-            return _language
-        }
+    val country: Country get() = _country
+    val currency: Currency get() = _currency
+    val language: Language get() = _language
 
-    val countriesFromApi: Single<List<CountryData>>
-        get() {
-            return Single.just(List(3) { _countryData })
-        }
-    val countryFromApi: Maybe<CountryData>
-        get() {
-            return Maybe.just(_countryData)
-        }
+    val countriesFromApi: Single<List<CountryData>> get() = Single.just(List(3) { _countryData })
+    val countryFromApi: Maybe<CountryData> get() = Maybe.just(_countryData)
 }

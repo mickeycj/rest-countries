@@ -10,14 +10,8 @@ import com.mickeycj.domain.models.Country
  */
 object MockData {
 
-    private val _countryDetails = Country()
+    private val _country = Country()
 
-    val countries: Single<List<Country>>
-        get() {
-            return Single.just(List(3) { _countryDetails })
-        }
-    val countryDetails: Maybe<Country>
-        get() {
-            return Maybe.just(_countryDetails)
-        }
+    val countries: Single<List<Country>> get() = Single.just(List(3) { _country })
+    val countryDetails: Maybe<Country> get() = Maybe.just(_country)
 }

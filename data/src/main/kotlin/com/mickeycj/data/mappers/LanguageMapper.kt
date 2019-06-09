@@ -7,5 +7,9 @@ import com.mickeycj.data.models.LanguageData
 
 class LanguageMapper : Mapper<LanguageData, Language> {
 
-    override fun toModel(from: LanguageData): Language = TODO()
+    override fun toModel(from: LanguageData): Language = Language(
+        from.name,
+        from.nativeName,
+        from.iso639_2
+    )
 }

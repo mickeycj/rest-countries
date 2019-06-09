@@ -13,6 +13,10 @@ import com.mickeycj.data.models.CountryData
  */
 interface RestCountriesApi {
 
+    companion object {
+        const val BASE_URL = "https://restcountries.eu/rest/v2/"
+    }
+
     @GET("all")
     fun getCountries(): Single<List<CountryData>>
 

@@ -8,13 +8,13 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-import io.reactivex.Maybe
-import io.reactivex.Single
+import io.reactivex.observers.TestObserver
 
+import com.mickeycj.domain.contracts.Mapper
 import com.mickeycj.domain.models.Country
 
 import com.mickeycj.data.MockData
-import com.mickeycj.data.mappers.CountryMapper
+import com.mickeycj.data.models.CountryData
 
 /**
  * Spek tests for remote Country repository.
@@ -24,7 +24,7 @@ class CountryRepositorySpec : Spek({
     describe("Country Repository") {
 
         val restCountriesApi by memoized { mockk<RestCountriesApi>() }
-        val countryMapper by memoized { mockk<CountryMapper>() }
+        val countryMapper by memoized { mockk<Mapper<CountryData, Country>>() }
         val countryRepository by memoized { CountryRepository(restCountriesApi, countryMapper) }
 
         context("Getting countries from REST Countries API") {
@@ -33,21 +33,19 @@ class CountryRepositorySpec : Spek({
             val mockCountryData = MockData.countryData
             val mockCountry = MockData.country
 
-            lateinit var result: Single<List<Country>>
+            lateinit var testObserver: TestObserver<List<Country>>
 
             beforeEach {
                 every { restCountriesApi.getCountries() } returns mockCountriesFromApi
                 every { countryMapper.toModel(mockCountryData) } returns mockCountry
 
-                result = countryRepository.getCountries()
+                testObserver = countryRepository.getCountries().test()
             }
             it("Should complete the API call without any errors") {
+                testObserver.assertComplete().assertNoErrors()
+
                 verify(exactly = 1) { restCountriesApi.getCountries() }
                 confirmVerified(restCountriesApi)
-
-                result.test()
-                    .assertComplete()
-                    .assertNoErrors()
             }
             it("Should call the corresponding mapper") {
                 verify(exactly = 3) { countryMapper.toModel(mockCountryData) }
@@ -62,21 +60,19 @@ class CountryRepositorySpec : Spek({
             val mockCountryData = MockData.countryData
             val mockCountry = MockData.country
 
-            lateinit var result: Maybe<Country>
+            lateinit var testObserver: TestObserver<Country>
 
             beforeEach {
                 every { restCountriesApi.getCountryByCode(code) } returns mockCountryFromApi
                 every { countryMapper.toModel(mockCountryData) } returns mockCountry
 
-                result = countryRepository.getCountry(code)
+                testObserver = countryRepository.getCountry(code).test()
             }
             it("Should complete the API call without any errors") {
+                testObserver.assertComplete().assertNoErrors()
+
                 verify(exactly = 1) { restCountriesApi.getCountryByCode(code) }
                 confirmVerified(restCountriesApi)
-
-                result.test()
-                    .assertComplete()
-                    .assertNoErrors()
             }
             it("Should call the corresponding mapper") {
                 verify(exactly = 1) { countryMapper.toModel(mockCountryData) }

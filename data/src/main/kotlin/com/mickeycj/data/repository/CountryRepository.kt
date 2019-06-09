@@ -16,7 +16,11 @@ class CountryRepository(
     private val countryMapper: Mapper<CountryData, Country>
 ) : com.mickeycj.domain.contracts.CountryRepository {
 
-    override fun getCountries(): Single<List<Country>> = TODO()
+    override fun getCountries(): Single<List<Country>> {
+        return restCountriesApi.getCountries().map { it.map(countryMapper::toModel) }
+    }
 
-    override fun getCountry(code: String): Maybe<Country> = TODO()
+    override fun getCountry(code: String): Maybe<Country> {
+        return restCountriesApi.getCountryByCode(code).map(countryMapper::toModel)
+    }
 }

@@ -100,9 +100,9 @@ object MockData {
     )
 
     private val _currency = Currency(
-        "USD",
         "United States dollar",
-        "$"
+        "$",
+        "USD"
     )
     private val _language = Language(
         "English",

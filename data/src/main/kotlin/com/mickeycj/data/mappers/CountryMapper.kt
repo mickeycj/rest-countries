@@ -14,5 +14,21 @@ class CountryMapper(
     private val languageMapper: Mapper<LanguageData, Language>
 ) : Mapper<CountryData, Country> {
 
-    override fun toModel(from: CountryData): Country = TODO()
+    override fun toModel(from: CountryData): Country = Country(
+        from.flag,
+        from.name,
+        from.nativeName,
+        from.alpha3Code,
+        from.capital,
+        from.domenym,
+        from.languages.map { languageMapper.toModel(it) },
+        from.currencies.map { currencyMapper.toModel(it) },
+        from.borders.toList(),
+        from.region,
+        from.coordinates[0].toFloat(),
+        from.coordinates[1].toFloat(),
+        from.area.toFloat(),
+        from.population,
+        from.giniIndex
+    )
 }

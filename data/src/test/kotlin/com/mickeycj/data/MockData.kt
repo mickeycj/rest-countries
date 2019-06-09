@@ -123,7 +123,7 @@ object MockData {
             "MEX"
         ),
         "Americas",
-        39.0f,
+        38.0f,
         -97.0f,
         9629091f,
         323947000,

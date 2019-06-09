@@ -11,6 +11,7 @@ import io.mockk.verifyAll
 import org.assertj.core.api.Assertions.assertThat
 
 import com.mickeycj.domain.contracts.Mapper
+import com.mickeycj.domain.models.Country
 import com.mickeycj.domain.models.Currency
 import com.mickeycj.domain.models.Language
 
@@ -29,24 +30,36 @@ class CountryMapperSpec : Spek({
         val languageMapper by memoized { mockk<Mapper<LanguageData, Language>>() }
         val countryMapper by memoized { CountryMapper(currencyMapper, languageMapper) }
 
-        context("When mapping country's data to its corresponding model") {
-            it("It should return the correct model mapping") {
-                every {
-                    currencyMapper.toModel(MockData.currencyData)
-                } returns MockData.currency
-                every {
-                    languageMapper.toModel(MockData.languageData)
-                } returns MockData.language
+        context("Mapping country's data to its corresponding model") {
 
-                val country = countryMapper.toModel(MockData.countryData)
+            val mockCountryData = MockData.countryData
+            val mockCurrencyData = MockData.currencyData
+            val mockLanguageData = MockData.languageData
+            val mockCountry = MockData.country
+            val mockCurrency = MockData.currency
+            val mockLanguage = MockData.language
 
+            lateinit var result: Country
+
+            beforeEach {
+                every {
+                    currencyMapper.toModel(mockCurrencyData)
+                } returns mockCurrency
+                every {
+                    languageMapper.toModel(mockLanguageData)
+                } returns mockLanguage
+
+                result = countryMapper.toModel(mockCountryData)
+            }
+            it("Should call its helper mappers") {
                 verifyAll {
-                    currencyMapper.toModel(MockData.currencyData)
-                    languageMapper.toModel(MockData.languageData)
+                    currencyMapper.toModel(mockCurrencyData)
+                    languageMapper.toModel(mockLanguageData)
                 }
                 confirmVerified(currencyMapper, languageMapper)
-
-                assertThat(country).isEqualTo(MockData.country)
+            }
+            it("Should return the correct model mapping") {
+                assertThat(result).isEqualTo(mockCountry)
             }
         }
     }

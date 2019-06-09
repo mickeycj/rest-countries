@@ -7,7 +7,11 @@ import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.mockk.verifyAll
+
+import io.reactivex.Maybe
+import io.reactivex.Single
+
+import com.mickeycj.domain.models.Country
 
 import com.mickeycj.data.MockData
 import com.mickeycj.data.mappers.CountryMapper
@@ -23,44 +27,60 @@ class CountryRepositorySpec : Spek({
         val countryMapper by memoized { mockk<CountryMapper>() }
         val countryRepository by memoized { CountryRepository(restCountriesApi, countryMapper) }
 
-        context("When getting countries from REST Countries API") {
-            it("It should complete the API call without any errors") {
-                every { restCountriesApi.getCountries() } returns MockData.countriesFromApi
-                every {
-                    countryMapper.toModel(MockData.countryData)
-                } returns MockData.country
+        context("Getting countries from REST Countries API") {
 
-                val result = countryRepository.getCountries()
+            val mockCountriesFromApi = MockData.countriesFromApi
+            val mockCountryData = MockData.countryData
+            val mockCountry = MockData.country
 
-                verify { restCountriesApi.getCountries() }
-                verify(exactly = 3) { countryMapper.toModel(MockData.countryData) }
-                confirmVerified(restCountriesApi, countryMapper)
+            lateinit var result: Single<List<Country>>
+
+            beforeEach {
+                every { restCountriesApi.getCountries() } returns mockCountriesFromApi
+                every { countryMapper.toModel(mockCountryData) } returns mockCountry
+
+                result = countryRepository.getCountries()
+            }
+            it("Should complete the API call without any errors") {
+                verify(exactly = 1) { restCountriesApi.getCountries() }
+                confirmVerified(restCountriesApi)
 
                 result.test()
                     .assertComplete()
                     .assertNoErrors()
             }
+            it("Should call the corresponding mapper") {
+                verify(exactly = 3) { countryMapper.toModel(mockCountryData) }
+                confirmVerified(countryMapper)
+            }
         }
 
-        context("When getting country by code from REST Countries API") {
-            it("It should complete the API call without any errors") {
-                val code = "USA"
+        context("Getting country by code from REST Countries API") {
 
-                every { restCountriesApi.getCountryByCode(code) } returns MockData.countryFromApi
-                every {
-                    countryMapper.toModel(MockData.countryData)
-                } returns MockData.country
+            val code = "USA"
+            val mockCountryFromApi = MockData.countryFromApi
+            val mockCountryData = MockData.countryData
+            val mockCountry = MockData.country
 
-                val result = countryRepository.getCountry(code)
+            lateinit var result: Maybe<Country>
 
-                verifyAll {
-                    restCountriesApi.getCountryByCode(code)
-                    countryMapper.toModel(MockData.countryData)
-                }
+            beforeEach {
+                every { restCountriesApi.getCountryByCode(code) } returns mockCountryFromApi
+                every { countryMapper.toModel(mockCountryData) } returns mockCountry
+
+                result = countryRepository.getCountry(code)
+            }
+            it("Should complete the API call without any errors") {
+                verify(exactly = 1) { restCountriesApi.getCountryByCode(code) }
+                confirmVerified(restCountriesApi)
 
                 result.test()
                     .assertComplete()
                     .assertNoErrors()
+            }
+            it("Should call the corresponding mapper") {
+                verify(exactly = 1) { countryMapper.toModel(mockCountryData) }
+                confirmVerified(countryMapper)
             }
         }
     }

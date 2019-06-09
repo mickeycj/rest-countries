@@ -5,6 +5,8 @@ import org.spekframework.spek2.style.specification.describe
 
 import org.assertj.core.api.Assertions.assertThat
 
+import com.mickeycj.domain.models.Language
+
 import com.mickeycj.data.MockData
 
 /**
@@ -16,11 +18,18 @@ class LanguageMapperSpec : Spek({
 
         val languageMapper by memoized { LanguageMapper() }
 
-        context("When mapping language's data to its corresponding model") {
-            it("It should return the correct model mapping") {
-                val language = languageMapper.toModel(MockData.languageData)
+        context("Mapping language's data to its corresponding model") {
 
-                assertThat(language).isEqualTo(MockData.language)
+            val mockLanguageData = MockData.languageData
+            val mockLanguage = MockData.language
+
+            lateinit var result: Language
+
+            beforeEach {
+                result = languageMapper.toModel(mockLanguageData)
+            }
+            it("Should return the correct model mapping") {
+                assertThat(result).isEqualTo(mockLanguage)
             }
         }
     }

@@ -5,6 +5,8 @@ import org.spekframework.spek2.style.specification.describe
 
 import org.assertj.core.api.Assertions.assertThat
 
+import com.mickeycj.domain.models.Currency
+
 import com.mickeycj.data.MockData
 
 /**
@@ -16,11 +18,18 @@ class CurrencyMapperSpec : Spek({
 
         val currencyMapper by memoized { CurrencyMapper() }
 
-        context("When mapping currency's data to its corresponding model") {
-            it("It should return the correct model mapping") {
-                val currency = currencyMapper.toModel(MockData.currencyData)
+        context("Mapping currency's data to its corresponding model") {
 
-                assertThat(currency).isEqualTo(MockData.currency)
+            val mockCurrencyData = MockData.currencyData
+            val mockCurrency = MockData.currency
+
+            lateinit var result: Currency
+
+            beforeEach {
+                result = currencyMapper.toModel(mockCurrencyData)
+            }
+            it("Should return the correct model mapping") {
+                assertThat(result).isEqualTo(mockCurrency)
             }
         }
     }

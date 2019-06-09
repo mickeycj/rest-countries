@@ -21,13 +21,17 @@ object GetCountriesUseCaseSpec : Spek({
         val countryRepository by memoized { mockk<CountryRepository>() }
         val getCountriesUseCase by memoized { GetCountriesUseCase(countryRepository) }
 
-        context("When getting countries from the repository") {
-            it("It should return a list of all countries") {
-                every { countryRepository.getCountries() } returns MockData.countries
+        context("Getting countries from the repository") {
+
+            val mockCountries = MockData.countries
+
+            beforeEach {
+                every { countryRepository.getCountries() } returns mockCountries
 
                 getCountriesUseCase.execute()
-
-                verify { countryRepository.getCountries() }
+            }
+            it("Should request for the list of all countries from the repository") {
+                verify(exactly = 1) { countryRepository.getCountries() }
                 confirmVerified(countryRepository)
             }
         }

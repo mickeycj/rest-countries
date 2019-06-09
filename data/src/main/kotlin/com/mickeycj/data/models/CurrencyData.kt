@@ -2,6 +2,9 @@ package com.mickeycj.data.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Object for Currency JSON data.
+ */
 class CurrencyData(
     @SerializedName("code")
     val code: String,

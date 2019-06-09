@@ -1,18 +1,6 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
-dependencies {
-    compile commonLibs.kotlinStdLib
-    implementation dataLibs.rxJava
-    implementation dataLibs.retrofit
-    implementation dataLibs.retrofitGsonConverter
-    implementation dataLibs.retrofitRxJavaAdapter
-    implementation dataLibs.spekJvm
-    implementation dataLibs.spekRunner
-    implementation dataLibs.assertJ
-    implementation dataLibs.mockK
-}
-
 buildscript {
     repositories {
         google()
@@ -28,20 +16,16 @@ repositories {
     jcenter()
 }
 dependencies {
+    implementation commonLibs.kotlinStdLib
+    implementation project(":domain")
     implementation dataLibs.rxJava
     implementation dataLibs.retrofit
     implementation dataLibs.retrofitGsonConverter
     implementation dataLibs.retrofitRxJavaAdapter
     testImplementation dataLibs.spekJvm
-    testImplementation dataLibs.assertJ
     testImplementation dataLibs.mockK
+    testImplementation dataLibs.assertJ
     testRuntimeOnly dataLibs.spekRunner
-}
-
-test {
-    useJUnitPlatform {
-        includeEngines dataLibs.engine
-    }
 }
 
 compileKotlin {
@@ -49,9 +33,13 @@ compileKotlin {
         jvmTarget = versions.jvm
     }
 }
-
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = versions.jvm
+    }
+}
+test {
+    useJUnitPlatform {
+        includeEngines dataLibs.engine
     }
 }

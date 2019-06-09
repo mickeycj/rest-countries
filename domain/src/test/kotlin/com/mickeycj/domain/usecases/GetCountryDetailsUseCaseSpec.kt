@@ -8,8 +8,11 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-import com.mickeycj.domain.FakeData
+import io.reactivex.observers.TestObserver
+
+import com.mickeycj.domain.MockData
 import com.mickeycj.domain.contracts.CountryRepository
+import com.mickeycj.domain.models.Country
 
 /**
  * Spek tests for getting country details from the repository.
@@ -21,16 +24,28 @@ object GetCountryDetailsUseCaseSpec : Spek({
         val countryRepository by memoized { mockk<CountryRepository>() }
         val getCountryDetailsUseCase by memoized { GetCountryDetailsUseCase(countryRepository) }
 
-        context("When getting country details from the repository") {
-            it("It should return the specified country details") {
-                val code = "USA"
+        context("Getting country details from the repository") {
 
-                every { countryRepository.getCountry(code) } returns FakeData.getCountry()
+            val code = "USA"
+            val mockCountryDetailsFromRepository = MockData.countryDetailsFromRepository
+            val mockCountryDetails = MockData.countryDetails
 
-                getCountryDetailsUseCase.execute(code)
+            lateinit var testObserver: TestObserver<Country>
 
-                verify { countryRepository.getCountry(code) }
+            beforeEach {
+                every { countryRepository.getCountry(code) } returns mockCountryDetailsFromRepository
+
+                testObserver = getCountryDetailsUseCase.execute(code).test()
+            }
+            it("Should request for the specified country details from the repository") {
+                verify(exactly = 1) { countryRepository.getCountry(code) }
                 confirmVerified(countryRepository)
+            }
+            it("Should return the correct country details from the repository") {
+                testObserver.assertResult(mockCountryDetails)
+            }
+            afterEach {
+                testObserver.dispose()
             }
         }
     }

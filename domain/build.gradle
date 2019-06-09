@@ -1,14 +1,6 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
-dependencies {
-    compile commonLibs.kotlinStdLib
-    implementation domainLibs.rxJava
-    implementation domainLibs.spekJvm
-    implementation domainLibs.spekRunner
-    implementation domainLibs.mockK
-}
-
 buildscript {
     repositories {
         google()
@@ -24,16 +16,11 @@ repositories {
     jcenter()
 }
 dependencies {
+    implementation commonLibs.kotlinStdLib
     implementation domainLibs.rxJava
     testImplementation domainLibs.spekJvm
     testImplementation domainLibs.mockK
     testRuntimeOnly domainLibs.spekRunner
-}
-
-test {
-    useJUnitPlatform {
-        includeEngines domainLibs.engine
-    }
 }
 
 compileKotlin {
@@ -41,9 +28,14 @@ compileKotlin {
         jvmTarget = versions.jvm
     }
 }
-
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = versions.jvm
     }
 }
+test {
+    useJUnitPlatform {
+        includeEngines domainLibs.engine
+    }
+}
+

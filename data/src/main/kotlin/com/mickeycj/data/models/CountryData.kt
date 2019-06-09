@@ -2,6 +2,9 @@ package com.mickeycj.data.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Object for Country JSON data.
+ */
 class CountryData(
     @SerializedName("name")
     val name: String,
@@ -26,7 +29,7 @@ class CountryData(
     @SerializedName("latlng")
     val coordinates: List<Int>,
     @SerializedName("demonym")
-    val domenym: String,
+    val demonym: String,
     @SerializedName("area")
     val area: Int,
     @SerializedName("gini")

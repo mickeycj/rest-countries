@@ -8,11 +8,14 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-import com.mickeycj.domain.FakeData
+import io.reactivex.observers.TestObserver
+
+import com.mickeycj.domain.MockData
 import com.mickeycj.domain.contracts.CountryRepository
+import com.mickeycj.domain.models.Country
 
 /**
- * Spek tests for getting countries from the repository.
+ * Spek tests for getting countriesFromRepository from the repository.
  */
 object GetCountriesUseCaseSpec : Spek({
 
@@ -21,14 +24,27 @@ object GetCountriesUseCaseSpec : Spek({
         val countryRepository by memoized { mockk<CountryRepository>() }
         val getCountriesUseCase by memoized { GetCountriesUseCase(countryRepository) }
 
-        context("When getting countries from the repository") {
-            it("It should return a list of all countries") {
-                every { countryRepository.getCountries() } returns FakeData.getCountries()
+        context("Getting countries from the repository") {
 
-                getCountriesUseCase.execute()
+            val mockCountriesFromRepository = MockData.countriesFromRepository
+            val mockCountries = MockData.countries
 
-                verify { countryRepository.getCountries() }
+            lateinit var testObserver: TestObserver<List<Country>>
+
+            beforeEach {
+                every { countryRepository.getCountries() } returns mockCountriesFromRepository
+
+                testObserver = getCountriesUseCase.execute().test()
+            }
+            it("Should request for the list of all countries from the repository") {
+                verify(exactly = 1) { countryRepository.getCountries() }
                 confirmVerified(countryRepository)
+            }
+            it("Should return the correct list of countries from the repository") {
+                testObserver.assertResult(mockCountries)
+            }
+            afterEach {
+                testObserver.dispose()
             }
         }
     }

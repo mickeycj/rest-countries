@@ -1,5 +1,6 @@
 package com.mickeycj.domain.contracts
 
+import io.reactivex.Maybe
 import io.reactivex.Single
 
 import com.mickeycj.domain.models.Country
@@ -11,5 +12,5 @@ interface CountryRepository {
 
     fun getCountries(): Single<List<Country>>
 
-    fun getCountry(code: String): Single<Country>
+    fun getCountry(code: String): Maybe<Country>
 }

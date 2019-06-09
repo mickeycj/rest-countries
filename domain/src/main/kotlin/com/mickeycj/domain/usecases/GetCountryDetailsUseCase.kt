@@ -1,6 +1,6 @@
 package com.mickeycj.domain.usecases
 
-import io.reactivex.Single
+import io.reactivex.Maybe
 
 import com.mickeycj.domain.contracts.CountryRepository
 import com.mickeycj.domain.models.Country
@@ -10,5 +10,5 @@ import com.mickeycj.domain.models.Country
  */
 class GetCountryDetailsUseCase(private val countryRepository: CountryRepository) {
 
-    fun execute(code: String): Single<Country> = countryRepository.getCountry(code)
+    fun execute(code: String): Maybe<Country> = countryRepository.getCountry(code)
 }

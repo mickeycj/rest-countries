@@ -2,6 +2,9 @@ package com.mickeycj.data.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Object for Translations JSON data.
+ */
 class TranslationsData(
     @SerializedName("de")
     val de: String,

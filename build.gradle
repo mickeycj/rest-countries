@@ -61,6 +61,7 @@ allprojects {
         mainSrcDir = 'src/main/kotlin'
         testSrcDir = 'src/test/kotlin'
 
+        applicationId = 'com.mickeycj.restcountries'
         androidCompileSdkVersion = 28
         androidMinSdkVersion = 26
         androidTargetSdkVersion = 28

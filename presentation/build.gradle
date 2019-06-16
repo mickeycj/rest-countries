@@ -12,7 +12,7 @@ android {
     }
     compileSdkVersion globalConfiguration['androidCompileSdkVersion']
     defaultConfig {
-        applicationId "com.mickeycj.restcountries"
+        applicationId globalConfiguration['applicationId']
         minSdkVersion globalConfiguration['androidMinSdkVersion']
         targetSdkVersion globalConfiguration['androidTargetSdkVersion']
         versionCode globalConfiguration['androidVersionCode']

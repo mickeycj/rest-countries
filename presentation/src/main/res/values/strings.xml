@@ -6,4 +6,11 @@
     <!--Splash Screen-->
     <string name="content_description_logo">REST Countries Logo</string>
 
+    <!--Shared-->
+    <string name="content_description_flag">Country\'s Flag</string>
+
+    <!--Placeholders-->
+    <string name="label_region">Region</string>
+    <string name="label_code">ABC</string>
+
 </resources>

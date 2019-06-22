@@ -39,6 +39,7 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
     implementation presentationLibs.supportLibrary
+    implementation presentationLibs.circleImageView
     testImplementation presentationLibs.junit
     androidTestImplementation presentationLibs.androidxCore
     androidTestImplementation presentationLibs.androidxRunner

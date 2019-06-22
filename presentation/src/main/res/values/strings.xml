@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">REST Countries</string>
+
+    <!--Application Name-->
+    <string name="application_name">REST Countries</string>
+
+    <!--Splash Screen-->
+    <string name="content_description_logo">REST Countries Logo</string>
+
 </resources>

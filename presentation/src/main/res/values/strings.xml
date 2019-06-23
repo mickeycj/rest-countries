@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">REST Countries</string>
+
+    <!--Application Name-->
+    <string name="application_name">REST Countries</string>
+
+    <!--Splash Screen-->
+    <string name="content_description_logo">REST Countries Logo</string>
+
+    <!--Country Details Screen-->
+    <string name="label_details_information">Information</string>
+    <string name="label_details_capital">Capital</string>
+    <string name="label_details_demonym">Demonym</string>
+    <string name="label_details_languages">Languages</string>
+    <string name="label_details_currencies">Currencies</string>
+    <string name="label_details_coordinates">Coordinates</string>
+    <string name="label_details_area">Area</string>
+    <string name="label_details_population">Population</string>
+    <string name="label_details_gini_index">Gini Index</string>
+    <string name="label_details_borders">Borders</string>
+
+    <!--Shared-->
+    <string name="content_description_flag">Country\'s Flag</string>
+
+    <!--Placeholders-->
+    <string name="placeholder_countries_region">Region</string>
+    <string name="placeholder_countries_code">ABC</string>
+    <string name="placeholder_details_name">Name</string>
+    <string name="placeholder_details_code">(Code)</string>
+    <string name="placeholder_details_region">Region</string>
+    <string name="placeholder_details_capital">Capital</string>
+    <string name="placeholder_details_demonym">Demonym</string>
+    <string name="placeholder_details_languages">Languages</string>
+    <string name="placeholder_details_currencies">Currencies</string>
+    <string name="placeholder_details_coordinates">Coordinates</string>
+    <string name="placeholder_details_area">Area</string>
+    <string name="placeholder_details_population">Population</string>
+    <string name="placeholder_details_gini_index">Gini Index</string>
+
 </resources>

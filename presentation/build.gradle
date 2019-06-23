@@ -12,7 +12,7 @@ android {
     }
     compileSdkVersion globalConfiguration['androidCompileSdkVersion']
     defaultConfig {
-        applicationId "com.mickeycj.restcountries"
+        applicationId globalConfiguration['applicationId']
         minSdkVersion globalConfiguration['androidMinSdkVersion']
         targetSdkVersion globalConfiguration['androidTargetSdkVersion']
         versionCode globalConfiguration['androidVersionCode']
@@ -39,6 +39,8 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
     implementation presentationLibs.supportLibrary
+    implementation presentationLibs.materialComponents
+    implementation presentationLibs.circleImageView
     testImplementation presentationLibs.junit
     androidTestImplementation presentationLibs.androidxCore
     androidTestImplementation presentationLibs.androidxRunner

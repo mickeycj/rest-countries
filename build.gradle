@@ -7,6 +7,8 @@ buildscript {
                 rxJava                  :   '2.2.9',
                 retrofit                :   '2.6.0',
                 supportLibrary          :   '28.0.0',
+                materialComponents      :   '1.1.0-alpha06',
+                circleImageView         :   '3.0.0',
                 spek                    :   '2.0.5',
                 mockK                   :   '1.9',
                 assertJ                 :   '3.11.1',
@@ -40,6 +42,8 @@ buildscript {
         ]
         presentationLibs = [
                 supportLibrary          :   ("com.android.support:appcompat-v7:$versions.supportLibrary"),
+                materialComponents      :   ("com.google.android.material:material:$versions.materialComponents"),
+                circleImageView         :   ("de.hdodenhof:circleimageview:$versions.circleImageView"),
                 junit                   :   ("junit:junit:$versions.junit"),
                 androidxCore            :   ("androidx.test:core:$versions.androidx"),
                 androidxRunner          :   ("androidx.test.ext:junit:$versions.androidx")
@@ -61,6 +65,7 @@ allprojects {
         mainSrcDir = 'src/main/kotlin'
         testSrcDir = 'src/test/kotlin'
 
+        applicationId = 'com.mickeycj.restcountries'
         androidCompileSdkVersion = 28
         androidMinSdkVersion = 26
         androidTargetSdkVersion = 28
@@ -71,6 +76,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 

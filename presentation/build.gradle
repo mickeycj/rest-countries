@@ -41,7 +41,18 @@ dependencies {
     implementation presentationLibs.supportLibrary
     implementation presentationLibs.materialComponents
     implementation presentationLibs.circleImageView
+    implementation presentationLibs.lifecycle
+    implementation presentationLibs.koin
+    implementation presentationLibs.koinViewModel
+    implementation presentationLibs.rxJava
+    implementation presentationLibs.rxAndroid
+    implementation presentationLibs.koinTest
+    testImplementation presentationLibs.lifecycleTest
+    testImplementation presentationLibs.spekJvm
+    testImplementation presentationLibs.mockK
     testImplementation presentationLibs.junit
+    testImplementation presentationLibs.assertJ
+    testRuntimeOnly presentationLibs.spekRunner
     androidTestImplementation presentationLibs.androidxCore
     androidTestImplementation presentationLibs.androidxRunner
 }

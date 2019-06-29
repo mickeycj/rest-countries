@@ -15,7 +15,7 @@ import com.mickeycj.domain.contracts.CountryRepository
 import com.mickeycj.domain.models.Country
 
 /**
- * Spek tests for getting countriesFromRepository from the repository.
+ * Spek tests for getting countries from the repository.
  */
 object GetCountriesUseCaseSpec : Spek({
 

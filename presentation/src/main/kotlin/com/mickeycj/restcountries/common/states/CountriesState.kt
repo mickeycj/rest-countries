@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.states
+package com.mickeycj.restcountries.common.states
 
 data class CountriesState(
     val regions: List<Region> = listOf()

@@ -4,14 +4,14 @@ import org.koin.android.viewmodel.dsl.viewModel
 
 import com.mickeycj.domain.models.Country
 
-import com.mickeycj.restcountries.common.StateMapper
-import com.mickeycj.restcountries.main.countries.CountriesViewModel
-import com.mickeycj.restcountries.main.countrydetails.CountryDetailsViewModel
-import com.mickeycj.restcountries.mappers.CountriesStateMapper
-import com.mickeycj.restcountries.mappers.CountryDetailsStateMapper
-import com.mickeycj.restcountries.splash.SplashViewModel
-import com.mickeycj.restcountries.states.CountriesState
-import com.mickeycj.restcountries.states.CountryDetailsState
+import com.mickeycj.restcountries.common.base.StateMapper
+import com.mickeycj.restcountries.common.mappers.CountriesStateMapper
+import com.mickeycj.restcountries.common.mappers.CountryDetailsStateMapper
+import com.mickeycj.restcountries.common.states.CountriesState
+import com.mickeycj.restcountries.common.states.CountryDetailsState
+import com.mickeycj.restcountries.views.main.countries.CountriesViewModel
+import com.mickeycj.restcountries.views.main.countrydetails.CountryDetailsViewModel
+import com.mickeycj.restcountries.views.splash.SplashViewModel
 
 /**
  * Presentation dependencies provider.

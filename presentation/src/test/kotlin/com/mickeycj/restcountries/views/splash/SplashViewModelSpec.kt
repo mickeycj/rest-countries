@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.splash
+package com.mickeycj.restcountries.views.splash
 
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin

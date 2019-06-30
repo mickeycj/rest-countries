@@ -46,7 +46,7 @@ dependencies {
     implementation presentationLibs.koinViewModel
     implementation presentationLibs.rxJava
     implementation presentationLibs.rxAndroid
-    implementation presentationLibs.koinTest
+    testImplementation presentationLibs.koinTest
     testImplementation presentationLibs.lifecycleTest
     testImplementation presentationLibs.spekJvm
     testImplementation presentationLibs.mockK

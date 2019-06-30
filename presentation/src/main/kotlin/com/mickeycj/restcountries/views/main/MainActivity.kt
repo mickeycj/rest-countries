@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.main
+package com.mickeycj.restcountries.views.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

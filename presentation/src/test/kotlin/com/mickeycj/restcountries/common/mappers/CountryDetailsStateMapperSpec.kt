@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.mappers
+package com.mickeycj.restcountries.common.mappers
 
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -6,7 +6,7 @@ import org.spekframework.spek2.style.specification.describe
 import org.assertj.core.api.Assertions.assertThat
 
 import com.mickeycj.restcountries.MockData
-import com.mickeycj.restcountries.states.CountryDetailsState
+import com.mickeycj.restcountries.common.states.CountryDetailsState
 
 /**
  * Spek tests for Country Details state mapper.

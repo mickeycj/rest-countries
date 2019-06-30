@@ -1,8 +1,8 @@
-package com.mickeycj.restcountries.splash
+package com.mickeycj.restcountries.views.splash
 
 import io.reactivex.Scheduler
 
-import com.mickeycj.restcountries.common.ViewModel
+import com.mickeycj.restcountries.common.base.ViewModel
 
 /**
  * View Model for Splash screen.

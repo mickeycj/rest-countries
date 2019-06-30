@@ -1,7 +1,8 @@
-package com.mickeycj.restcountries.splash
+package com.mickeycj.restcountries.views.splash
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+
 import com.mickeycj.restcountries.R
 
 /**

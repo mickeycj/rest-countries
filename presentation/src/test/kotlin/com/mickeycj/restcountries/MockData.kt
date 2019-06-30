@@ -7,8 +7,8 @@ import com.mickeycj.domain.models.Country
 import com.mickeycj.domain.models.Currency
 import com.mickeycj.domain.models.Language
 
-import com.mickeycj.restcountries.states.CountriesState
-import com.mickeycj.restcountries.states.CountryDetailsState
+import com.mickeycj.restcountries.common.states.CountriesState
+import com.mickeycj.restcountries.common.states.CountryDetailsState
 
 /**
  * Object for providing mock data.

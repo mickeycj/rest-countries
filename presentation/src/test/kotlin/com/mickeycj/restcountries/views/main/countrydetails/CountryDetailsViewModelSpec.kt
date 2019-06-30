@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.main.countrydetails
+package com.mickeycj.restcountries.views.main.countrydetails
 
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
@@ -26,9 +26,9 @@ import com.mickeycj.domain.usecases.GetCountryDetailsUseCase
 
 import com.mickeycj.restcountries.MockData
 import com.mickeycj.restcountries.RxImmediateSchedulerRule
-import com.mickeycj.restcountries.common.StateMapper
+import com.mickeycj.restcountries.common.base.StateMapper
+import com.mickeycj.restcountries.common.states.CountryDetailsState
 import com.mickeycj.restcountries.di.Schedulers
-import com.mickeycj.restcountries.states.CountryDetailsState
 
 /**
  * Spec for Country Details View Model.

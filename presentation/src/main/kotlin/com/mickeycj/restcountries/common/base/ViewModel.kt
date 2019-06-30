@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.common
+package com.mickeycj.restcountries.common.base
 
 import io.reactivex.Scheduler
 

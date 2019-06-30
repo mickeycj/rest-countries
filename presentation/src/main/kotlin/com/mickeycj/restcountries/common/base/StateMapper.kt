@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries.common
+package com.mickeycj.restcountries.common.base
 
 /**
  * State mapper interface for converting domain models to states.

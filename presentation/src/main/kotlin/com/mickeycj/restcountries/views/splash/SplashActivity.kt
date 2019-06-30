@@ -1,8 +1,13 @@
-package com.mickeycj.restcountries
+package com.mickeycj.restcountries.views.splash
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
+import com.mickeycj.restcountries.R
+
+/**
+ * Activity for Splash screen.
+ */
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

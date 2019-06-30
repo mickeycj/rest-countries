@@ -1,4 +1,4 @@
-package com.mickeycj.restcountries
+package com.mickeycj.restcountries.views.main.countrydetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
+import com.mickeycj.restcountries.R
+
+/**
+ * Fragment for Country Details screen.
+ */
 class CountryDetailsFragment : Fragment() {
 
     override fun onCreateView(

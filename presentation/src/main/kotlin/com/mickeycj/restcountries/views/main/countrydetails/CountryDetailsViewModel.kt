@@ -23,5 +23,24 @@ class CountryDetailsViewModel(
 
     val countryDetailsState = MutableLiveData<CountryDetailsState>()
 
-    fun loadCountryDetails(code: String): Unit = TODO()
+    init {
+        loadingState.value = false
+        countryDetailsState.value = CountryDetailsState()
+    }
+
+    fun loadCountryDetails(code: String) {
+        getCountryDetailsUseCase.execute(code)
+            .subscribeOn(subscribeOnScheduler)
+            .observeOn(observeOnScheduler)
+            .subscribe(
+                { countryDetails ->
+                    run {
+                        loadingState.value = true
+                        countryDetailsState.value = countryDetailsStateMapper.toState(countryDetails)
+                    }
+                },
+                Throwable::printStackTrace
+            )
+            .dispose()
+    }
 }

@@ -27,16 +27,16 @@ class SplashViewModelSpec : KoinTest {
 
     companion object {
 
-        @JvmStatic
         @BeforeClass
+        @JvmStatic
         fun beforeClass() {
             startKoin {
                 modules(Schedulers.module)
             }
         }
 
-        @JvmStatic
         @AfterClass
+        @JvmStatic
         fun afterClass() {
             stopKoin()
         }
@@ -62,13 +62,18 @@ class SplashViewModelSpec : KoinTest {
 
     @Test
     fun `Splash View Model should return false as its initial loading state`() {
-        assertThat(splashViewModel.loadingState.value).isFalse()
+        val loadingState = splashViewModel.loadingState.value
+
+        assertThat(loadingState).isNotNull()
+        assertThat(loadingState).isFalse()
     }
 
     @Test
     fun `Splash View Model should update the loading state to true after being called`() {
         splashViewModel.delaySplash()
+        val loadingState = splashViewModel.loadingState.value
 
-        assertThat(splashViewModel.loadingState.value).isTrue()
+        assertThat(loadingState).isNotNull()
+        assertThat(loadingState).isTrue()
     }
 }

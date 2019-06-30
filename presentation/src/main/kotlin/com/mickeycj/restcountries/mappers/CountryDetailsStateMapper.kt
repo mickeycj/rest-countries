@@ -3,6 +3,7 @@ package com.mickeycj.restcountries.mappers
 import com.mickeycj.domain.models.Country
 
 import com.mickeycj.restcountries.common.StateMapper
+import com.mickeycj.restcountries.states.CountriesState
 import com.mickeycj.restcountries.states.CountryDetailsState
 
 /**

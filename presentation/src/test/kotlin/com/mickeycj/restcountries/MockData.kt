@@ -169,7 +169,7 @@ object MockData {
         "United States of America",
         "USA",
         "Americas",
-        "Washington D.C.",
+        "Washington, D.C.",
         "American",
         "English",
         "USD($)",

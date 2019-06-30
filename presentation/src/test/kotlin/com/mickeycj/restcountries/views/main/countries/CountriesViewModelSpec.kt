@@ -12,8 +12,10 @@ import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
 
+import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 
 import org.assertj.core.api.Assertions.assertThat
 
@@ -72,14 +74,16 @@ class CountriesViewModelSpec : KoinTest {
     private val mockCountries = MockData.countries
     private val mockCountriesState = MockData.countriesState
 
+    private val getCountriesUseCase by inject<GetCountriesUseCase>()
+    private val countriesStateMapper by inject<StateMapper<List<Country>, CountriesState>>()
+    private val subscribeOnScheduler by inject<Scheduler>(Schedulers.IoThread)
+    private val observeOnScheduler by inject<Scheduler>(Schedulers.MainThread)
+
     private lateinit var countriesViewModel: CountriesViewModel
 
     @Before
     fun before() {
-        val getCountriesUseCase by inject<GetCountriesUseCase>()
-        val countriesStateMapper by inject<StateMapper<List<Country>, CountriesState>>()
-        val subscribeOnScheduler by inject<Scheduler>(Schedulers.IoThread)
-        val observeOnScheduler by inject<Scheduler>(Schedulers.MainThread)
+        clearMocks(getCountriesUseCase, countriesStateMapper)
 
         every { getCountriesUseCase.execute() } returns mockCountriesFromUseCase
         every { countriesStateMapper.toState(mockCountries) } returns mockCountriesState
@@ -121,6 +125,9 @@ class CountriesViewModelSpec : KoinTest {
     fun `Countries View Model should update the countries state according to the data after being called`() {
         countriesViewModel.loadCountries()
         val countriesState = countriesViewModel.countriesState.value
+
+        verify(exactly = 1) { getCountriesUseCase.execute() }
+        verify(exactly = 1) { countriesStateMapper.toState(mockCountries) }
 
         assertThat(countriesState).isNotNull()
         assertThat(countriesState).isEqualTo(mockCountriesState)

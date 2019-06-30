@@ -12,8 +12,10 @@ import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
 
+import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 
 import org.assertj.core.api.Assertions.assertThat
 
@@ -74,14 +76,16 @@ class CountryDetailsViewModelSpec : KoinTest {
     private val mockCountryDetails = MockData.countryDetails
     private val mockCountryDetailsState = MockData.countryDetailsState
 
+    private val getCountryDetailsUseCase by inject<GetCountryDetailsUseCase>()
+    private val countryDetailsStateMapper by inject<StateMapper<Country, CountryDetailsState>>()
+    private val subscribeOnScheduler by inject<Scheduler>(Schedulers.IoThread)
+    private val observeOnScheduler by inject<Scheduler>(Schedulers.MainThread)
+
     private lateinit var countryDetailsViewModel: CountryDetailsViewModel
 
     @Before
     fun before() {
-        val getCountryDetailsUseCase by inject<GetCountryDetailsUseCase>()
-        val countryDetailsStateMapper by inject<StateMapper<Country, CountryDetailsState>>()
-        val subscribeOnScheduler by inject<Scheduler>(Schedulers.IoThread)
-        val observeOnScheduler by inject<Scheduler>(Schedulers.MainThread)
+        clearMocks(getCountryDetailsUseCase, countryDetailsStateMapper)
 
         every { getCountryDetailsUseCase.execute(code) } returns mockCountryDetailsFromUseCase
         every { countryDetailsStateMapper.toState(mockCountryDetails) } returns mockCountryDetailsState
@@ -123,6 +127,9 @@ class CountryDetailsViewModelSpec : KoinTest {
     fun `Country Details View Model should update the country details state according to the data after being called`() {
         countryDetailsViewModel.loadCountryDetails(code)
         val countryDetailsState = countryDetailsViewModel.countryDetailsState.value
+
+        verify(exactly = 1) { getCountryDetailsUseCase.execute(code) }
+        verify(exactly = 1) { countryDetailsStateMapper.toState(mockCountryDetails) }
 
         assertThat(countryDetailsState).isNotNull()
         assertThat(countryDetailsState).isEqualTo(mockCountryDetailsState)

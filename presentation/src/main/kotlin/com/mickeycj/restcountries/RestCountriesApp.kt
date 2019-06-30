@@ -1,10 +1,10 @@
 package com.mickeycj.restcountries
 
-import android.app.Application
-
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+
+import android.app.Application
 
 import com.mickeycj.restcountries.di.Api
 import com.mickeycj.restcountries.di.Data
@@ -14,14 +14,14 @@ import com.mickeycj.restcountries.di.Schedulers
 /**
  * REST Countries application.
  */
-class RestCountriesApplication : Application() {
+class RestCountriesApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
         startKoin {
             androidLogger()
-            androidContext(this@RestCountriesApplication)
+            androidContext(this@RestCountriesApp)
             modules(listOf(
                 Api.module,
                 Data.module,

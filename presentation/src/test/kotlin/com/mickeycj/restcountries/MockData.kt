@@ -1,5 +1,6 @@
 package com.mickeycj.restcountries
 
+import io.reactivex.Maybe
 import io.reactivex.Single
 
 import com.mickeycj.domain.models.Country
@@ -7,6 +8,7 @@ import com.mickeycj.domain.models.Currency
 import com.mickeycj.domain.models.Language
 
 import com.mickeycj.restcountries.states.CountriesState
+import com.mickeycj.restcountries.states.CountryDetailsState
 
 /**
  * Object for providing mock data.
@@ -29,7 +31,7 @@ object MockData {
         "Americas",
         38.0f,
         -97.0f,
-        9629091f,
+        9629091.0f,
         323947000,
         48.0f
     )
@@ -51,7 +53,7 @@ object MockData {
         "Americas",
         60.0f,
         -95.0f,
-        9984670f,
+        9984670.0f,
         36155487,
         32.6f
     )
@@ -72,7 +74,7 @@ object MockData {
         "Americas",
         23.0f,
         -102.0f,
-        1964375f,
+        1964375.0f,
         122273473,
         47.0f
     )
@@ -98,7 +100,7 @@ object MockData {
         "Europe",
         46.0f,
         2.0f,
-        640679f,
+        640679.0f,
         66710000,
         32.7f
     )
@@ -120,7 +122,7 @@ object MockData {
         "Asia",
         15.0f,
         100.0f,
-        513129f,
+        513129.0f,
         65327652,
         40.0f
     )
@@ -162,8 +164,29 @@ object MockData {
         listOf(_region1, _region2, _region3)
     )
 
+    private val _countryDetailsState = CountryDetailsState(
+        "https://restcountries.eu/data/usa.svg",
+        "United States of America",
+        "USA",
+        "Americas",
+        "Washington D.C.",
+        "American",
+        "English",
+        "USD($)",
+        38.0f,
+        -97.0f,
+        9629091.0f,
+        323947000,
+        48.0f,
+        listOf(_countryState2, _countryState3)
+    )
+
     val countries: List<Country> get() = _countries
+    val countryDetails: Country get() = _country1
+
     val countriesFromUseCase: Single<List<Country>> get() = Single.just(_countries)
+    val countryDetailsFromUseCase: Maybe<Country> get() = Maybe.just(_country1)
 
     val countriesState: CountriesState get() = _countriesState
+    val countryDetailsState: CountryDetailsState get() = _countryDetailsState
 }

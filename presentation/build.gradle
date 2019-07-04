@@ -48,11 +48,9 @@ dependencies {
     implementation presentationLibs.rxAndroid
     testImplementation presentationLibs.koinTest
     testImplementation presentationLibs.lifecycleTest
-    testImplementation presentationLibs.spekJvm
     testImplementation presentationLibs.mockK
     testImplementation presentationLibs.junit
     testImplementation presentationLibs.assertJ
-    testRuntimeOnly presentationLibs.spekRunner
     androidTestImplementation presentationLibs.androidxCore
     androidTestImplementation presentationLibs.androidxRunner
 }

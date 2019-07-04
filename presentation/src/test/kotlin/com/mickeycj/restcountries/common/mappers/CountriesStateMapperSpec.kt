@@ -1,35 +1,25 @@
 package com.mickeycj.restcountries.common.mappers
 
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.describe
+import org.junit.Test
 
 import org.assertj.core.api.Assertions.assertThat
 
 import com.mickeycj.restcountries.MockData
-import com.mickeycj.restcountries.common.states.CountriesState
 
 /**
- * Spek tests for Countries state mapper.
+ * Spec for Countries state mapper.
  */
-class CountriesStateMapperSpec : Spek({
+class CountriesStateMapperSpec {
 
-    describe("Countries State Mapper") {
+    private val countriesStateMapper = CountriesStateMapper()
 
-        val countriesStateMapper by memoized { CountriesStateMapper() }
+    @Test
+    fun `Countries State Mapper should return the correct state mapping when called`() {
+        val mockCountries = MockData.countries
+        val mockCountriesState = MockData.countriesState
 
-        context("Mapping countries from use case to its corresponding countries state") {
+        val result = countriesStateMapper.toState(mockCountries)
 
-            val mockCountries = MockData.countries
-            val mockCountriesState = MockData.countriesState
-
-            lateinit var result: CountriesState
-
-            beforeEach {
-                result = countriesStateMapper.toState(mockCountries)
-            }
-            it("Should return the correct state mapping") {
-                assertThat(result).isEqualTo(mockCountriesState)
-            }
-        }
+        assertThat(result).isEqualTo(mockCountriesState)
     }
-})
+}
